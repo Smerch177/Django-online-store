@@ -25,10 +25,21 @@ cartItems.forEach(element => {
         for (let i of all_prices) {
             full_price += Number(i.innerText);
         }
-        
+
         document.querySelector('#full_amount').innerHTML = full_price;
         document.querySelector('#hidden_full_amount').value = full_price;
+
+        const cartInfoJson = {};
+        cartItems.forEach(element => {
+            let item = element.querySelector('#item_name').innerText,
+                count = element.querySelector('#count').value,
+                amount = element.querySelector('#amount').innerText;
+            if (count > 0) {
+                cartInfoJson[item] = [count, amount];
+            }
+        })
+
+        document.querySelector('#hidden_all_info_json').value = JSON.stringify(cartInfoJson);
+        console.log(document.querySelector('#hidden_all_info_json').innerText);
     });
 });
-
-

@@ -14,7 +14,9 @@ urlpatterns = [
     path('order/create', views.order_create),
     path('discount/<int:id>', views.discount),
     path('basket/add_discount/<int:id>', views.basket_add_disk),
-    path('basket/delete_discount/<int:id>', views.basket_delete_disk)
+    path('basket/delete_discount/<int:id>', views.basket_delete_disk),
+    path('comments/', views.comments),
+    path('comments/add', views.comments_add)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

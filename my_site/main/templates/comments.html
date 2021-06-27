@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+Отзывы пользователей
+{% endblock %}
+
+{% block body %}
+<h3>Написать свой отзыв:</h3>
+<form name="comment" method="POST" action="/comments/add">{% csrf_token %}
+    <input type="email" class="form-control" name="email" id="email" required placeholder="Ваш email"><br>
+    <input type="text" class="form-control" name="comment" id="comment" placeholder="Ваш отзыв"><br>
+    <input type="submit" class="btn btn-lg btn-success form-control" value="Отправить"><br>
+    <br>
+</form>
+<h3>Отзывы пользователей:</h3>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class='text-light'>Email</th>
+          <th class='text-light'>Отзыв</th>
+          <th class='text-light'>Предмет</th>
+          <th class='text-light'>Сумма заказа</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for el in data %}
+        <tr>
+          <td class='text-light'>{{el.email}}</td>
+          <td class='text-light'>{{el.comment}}</td>
+          <td class='text-light'>{{el.title}}</td>
+          <td class='text-light'>{{el.price}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+<br>
+{% endblock %}

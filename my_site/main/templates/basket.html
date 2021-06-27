@@ -19,7 +19,7 @@
       <tbody>
         {% for el in data %}
         <tr class='product'>
-          <td class='text-light'>{{el.title}}</td>
+          <td class='text-light' id='item_name'>{{el.title}}</td>
           <td class='text-light' id='price'>{{el.price}}</td>
           <td class='text-light' id='for_count'><input class="table-width" type="number" id='count'></td>
           <td class='text-light' id='amount'></td>
@@ -32,7 +32,7 @@
         {% endfor %}
         {% for el in discount %}
         <tr class='product'>
-          <td class='text-light'>{{el.title}}</td>
+          <td class='text-light' id='item_name'>{{el.title}}</td>
           <td class='text-light' id='price'>{{el.price}}</td>
           <td class='text-light' id='for_count'><input class="table-width" type="number" id='count'></td>
           <td class='text-light' id='amount'></td>
@@ -53,6 +53,7 @@
 <br>
 <form action="/order" method="POST">{% csrf_token %}
   <input type="hidden" name="hidden_full_amount" value="0" id='hidden_full_amount'>
+  <input type="hidden" name="hidden_all_info_json" value="null" id='hidden_all_info_json'>
   <button class="w-100 btn btn-lg btn-grad" type="submit">Оформить заказ</button>
 </form>
 <script type="text/javascript", src="/static/js/calc_bask.js"></script>

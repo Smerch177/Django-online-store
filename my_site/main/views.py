@@ -2,7 +2,8 @@ from functools import reduce
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.core.mail import send_mail, mail_admins
-from .models import Categories, Discount, Item
+from .models import Categories, Comments, Discount, Item, Order
+from json import loads
 
 
 def index(request):
@@ -57,16 +58,45 @@ def basket_delete(request, id):
 def order(request):
     if request.method == 'POST':
         sum = request.POST['hidden_full_amount']
-        return render(request, 'order.html', {'data': sum})
+        json = request.POST['hidden_all_info_json']
+        return render(request, 'order.html', {'data': sum, 'data_json': json})
 
 def order_create(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        surname = request.POST['surname']
-        tel = request.POST['tel']
-        email = request.POST['email']
-        data = f'{name} {surname} {tel} {email}'
-        #send_mail('Заказ оформлен','Успешно оформлен заказ!','django',['tovstogan.vlad@gmail.com'],fail_silently=False,)
+        json = loads(request.POST['hidden_all_info_json'])
+        for x in json:
+            order = Order()
+            order.name = request.POST['name']
+            order.surname = request.POST['surname']
+            order.tel = request.POST['tel']
+            order.email = request.POST['email']
+            order.title = x
+            order.price_amount = int(json[f'{x}'][1])
+            order.amount = int(json[f'{x}'][0])
+            order.save()
+            comments = Comments()
+            comments.email = request.POST['email']
+            comments.title = x
+            comments.price = int(json[f'{x}'][1])
+            comments.save()
+        #send_mail('Заказ оформлен','Успешно оформлен заказ!','django',[email],fail_silently=False,)
         #mail_admins('Новый заказ', data, fail_silently=False)
         return redirect('/')
+
+def comments(request):
+    comments = Comments.objects.all()
+    return render(request, 'comments.html', {'data': comments})
+
+def comments_add(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        comments = Comments.objects.all().filter(email = email)
+        for x in comments:
+            if x.comment == '':
+                x.comment = request.POST['comment']
+                x.save()
+            else:
+                pass
+    return redirect('/comments')
+        
     
