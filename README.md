@@ -7,7 +7,6 @@ This project was created for demo purposes.
 Products<br>
 Category<br>
 Cart<br>
-Checkout (Supports Guest Checkout and Logged User Account Checkout)<br>
 Orders<br>
 Mailing (Order Confirmation)<br>
 Comments<br>
