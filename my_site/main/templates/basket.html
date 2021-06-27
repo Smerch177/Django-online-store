@@ -30,6 +30,19 @@
         </td>
         </tr>
         {% endfor %}
+        {% for el in discount %}
+        <tr class='product'>
+          <td class='text-light'>{{el.title}}</td>
+          <td class='text-light' id='price'>{{el.price}}</td>
+          <td class='text-light' id='for_count'><input class="table-width" type="number" id='count'></td>
+          <td class='text-light' id='amount'></td>
+          <td>
+            <div class="delete-wrapper">
+              <a href='/basket/delete_discount/{{el.id}}' class="delete-button">&#10006</a>
+          </div>
+        </td>
+        </tr>
+        {% endfor %}
       </tbody>
     </table>
 <h3>

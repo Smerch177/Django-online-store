@@ -11,7 +11,10 @@ urlpatterns = [
     path('basket', views.basket),
     path('basket/delete/<int:id>', views.basket_delete),
     path('order', views.order),
-    path('order/create', views.order_create)
+    path('order/create', views.order_create),
+    path('discount/<int:id>', views.discount),
+    path('basket/add_discount/<int:id>', views.basket_add_disk),
+    path('basket/delete_discount/<int:id>', views.basket_delete_disk)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
