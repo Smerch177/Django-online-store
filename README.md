@@ -10,6 +10,7 @@ Cart<br>
 Checkout (Supports Guest Checkout and Logged User Account Checkout)<br>
 Orders<br>
 Mailing (Order Confirmation)<br>
+Comments<br>
 
 <h1>Dependencies</h1>
 asgiref==3.3.4<br>
