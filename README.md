@@ -12,7 +12,7 @@ Mailing (Order Confirmation)<br>
 Comments<br>
 
 <h1>Items update category</h1>
-<u>Updates of categories in items occurs after a reboot or database update</u><br>
+<ins>Updates of categories in items occurs after a reboot or database update</ins><br>
 
 <h1>Dependencies</h1>
 asgiref==3.3.4<br>
